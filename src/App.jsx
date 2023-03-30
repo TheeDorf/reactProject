@@ -1,47 +1,15 @@
-import React, { Component } from 'react';
-import './App.css';
+import React, { Component } from "react";
+import FilmsList from "./Components/FilmsList.jsx"
 
-class App extends Component { 
-  constructor(props) {
-    super(props);
-    this.state={
-      list:["ready","set","go"],
-      text:""
-    };
-    this.onSubmit=this.onSubmit.bind(this); 
-   }
-   onSubmit(event){
-    event.preventDefault()
-    let newList = [... this.state.list, this.state.text]
-    this.setState({
-      list: newList,
-      text: ""
-    })
-   }
 
-  render (){
+class App extends Component {
+  render() {
     return (
-    <div>
-        <h1>Hello World</h1>
-        <form onSubmit={this.onSubmit}>
-          <input 
-          type="text" 
-          name="text" 
-          id="text" 
-          value={this.state.text} onChange= {(event)=>this.setState({
-              text: event.target.value
-          })}></input>
-          <button type="submit"></button>
-        </form>
-      
-        <ul>
-          {this.state.list.map((item,index)=>{
-            return <li key={index}>{item}</li>;
-          })}
-        </ul>
-    </div>
+      <div>
+        <h1>Studio Ghibli Films</h1>
+        <FilmsList />
+      </div>
     );
+  }
 }
-}
-
 export default App;
