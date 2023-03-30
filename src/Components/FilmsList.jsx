@@ -8,6 +8,8 @@ class FilmsList extends Component{
            } ;
         }
     }
+
+    
     getFilms(){
         fetch("https://studioghibliapi-d6fc8.web.app/films")
         .then((response)=> response.json())
