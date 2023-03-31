@@ -1,5 +1,10 @@
 import React, { useState } from "react";
-import { BrowserRouter as Router, NavLink, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  NavLink,
+  Routes,
+  Route,
+} from "react-router-dom";
 import { HomePage, FilmsPage } from "./pages";
 
 function App(props) {
@@ -18,15 +23,18 @@ function App(props) {
         <Route path="/" element={<HomePage />} />
         <Route path="/films" element={<FilmsPage />} />
       </Routes>
-<nav>
-  <ul>
-  <li><NavLink to= "/"></NavLink></li>
-  <li><NavLink to="/films">FILMS</NavLink></li>
-  </ul> 
-      
+      <nav>
+        <ul>
+          <li>
+            <NavLink to="/"></NavLink>
+          </li>
+          <li>
+            <NavLink to="/films">Films</NavLink>
+          </li>
+        </ul>
       </nav>
-      <div className="App">
-        <h1>Hello World</h1>
+      {/* <div className="App">
+  
 
         <form onSubmit={onSubmit}>
           <input
@@ -41,7 +49,7 @@ function App(props) {
             return <li key={index}>{item}</li>;
           })}
         </ul>
-      </div>
+      </div> */}
     </Router>
   );
 }
