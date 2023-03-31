@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import { BrowserRouter as Router, NavLink, Routes, Route } from "react-router-dom";
-import { HomePage, FilmsPage } from "./pages";
+// import FilmsList from "./Components/FilmsListFunctional";
+// import { BrowserRouter as Router, Link, Routes, Route } from "react-router-dom";
+// import AboutMe from "./Components/AboutMe";
 
-function App(props) {
+
+function HomePage(props) {
   const [list, setList] = useState(["ready", "set", "GO"]);
   const [text, setText] = useState("");
 
@@ -13,20 +15,9 @@ function App(props) {
   };
 
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/films" element={<FilmsPage />} />
-      </Routes>
-<nav>
-  <ul>
-  <li><NavLink to= "/"></NavLink></li>
-  <li><NavLink to="/films">FILMS</NavLink></li>
-  </ul> 
-      
-      </nav>
+   
       <div className="App">
-        <h1>Hello World</h1>
+        <h1>Learning React</h1>
 
         <form onSubmit={onSubmit}>
           <input
@@ -42,7 +33,6 @@ function App(props) {
           })}
         </ul>
       </div>
-    </Router>
   );
 }
-export default App;
+export default HomePage;
