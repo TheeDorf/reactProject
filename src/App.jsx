@@ -1,55 +1,8 @@
-// import React, { Component } from "react";
-// import FilmsList from "./Components/FilmsListFunctional.jsx"
 
-// class App extends Component {
-//   constructor(props) {
-//     super(props);
-
-//     this.state = {
-//       list: ["ready", "set", "GO"],
-//       text: "",
-//     };
-
-//     this.onSubmit = this.onSubmit.bind(this);
-//   }
-
-//   onSubmit(event) {
-//     event.preventDefault();
-//     let newList = [...this.state.list, this.state.text];
-//     this.setState({
-//       list: newList,
-//       text: "",
-//     });
-//   }
-
-//   render() {
-//     return (
-//       <div className="App">
-//         <h1>Hello World</h1>
-//         <form onSubmit={this.onSubmit}>
-//           <input
-//             type="text"
-//             value={this.state.text}
-//             onChange={(e) =>
-//               this.setState({
-//                 text: e.target.value,
-//               })
-//             }
-//           />
-//           <button type="submit">Submit</button>
-//         </form>
-//         <ul>
-//           {this.state.list.map((item, index) => {
-//             return <li key={index}>{item}</li>;
-//           })}
-//         </ul>
-//         <FilmsList />
-//       </div>
-//     );
-//   }
-// }
 import React, { useState } from "react";
 import FilmsList from "./Components/FilmsListFunctional";
+import  { BrowserRouter as Router, Routes, Route} from 'react-router-dom'
+import AboutMe from"./Components/AboutMe"
 
 function App (props) {
   const [list, setList] = useState(["ready", "set", "GO"]);
@@ -61,9 +14,21 @@ function App (props) {
     setText("");
   };
 
-  return (
-    <div className="App">
+      return (
+        <Router>
+          <Routes>
+            <Route
+            path="/"
+            element={<FilmsList />}
+            /> 
+            <Route 
+            path="/about"
+            element = {<AboutMe/>}
+            />
+          </Routes>
+  <div className="App">
       <h1>Hello World</h1>
+        
       <form onSubmit={onSubmit}>
         <input
           type="text"
@@ -73,12 +38,12 @@ function App (props) {
         <button type="submit">Submit</button>
       </form>
       <ul>
-        {this.state.list.map((item, index) => {
+        {list.map((item, index) => {
           return <li key={index}>{item}</li>;
         })}
       </ul>
-      <FilmsList />
     </div>
+  </Router>
   );
 }
 export default App;
