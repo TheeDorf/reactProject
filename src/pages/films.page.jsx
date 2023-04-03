@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { filterFilmsByDirector, getListOf } from "../helpers/film.helpers";
+import {
+  filterFilmsByDirector,
+  getListOf,
+  getFilmStats,
+} from "../helpers/film.helpers";
+import { Link } from "react-router-dom";
 
 function FilmsList() {
   const [list, setList] = useState([]);
-  const [searchDirector, setSearchDirector] = useState([]);
+  const [searchDirector, setSearchDirector] = useState("");
 
   function getFilms() {
     fetch("https://studioghibliapi-d6fc8.web.app/films")
@@ -24,6 +29,7 @@ function FilmsList() {
 
   let filmsByDirector = filterFilmsByDirector(list, searchDirector);
   let directors = getListOf(list, "director");
+  let { avg_score, total, latest } = getFilmStats(filmsByDirector);
 
   return (
     <div>
@@ -48,12 +54,29 @@ function FilmsList() {
           </select>
         </div>
       </form>
+      <div>
+        <div>
+          <span># Of Films</span>
+          <span>{total}</span>
+        </div>
+        <div>
+          <span>Average Rating</span>
+          <span>{avg_score.toFixed(2)}</span>
+        </div>
+        <div>
+          <span>Latest Film</span>
+          <span>{latest}</span>
+        </div>
+      </div>
       <ul>
         {filmsByDirector.map((film) => {
-          return <li key={film.id}>
-          <h2> {film.title} </h2>
-            <img src= {film.image} alt="movie" />
-            </li>;
+          return (
+            <li key={film.id}>
+              <Link to={`/film/${film.id}`}> {film.title} </Link>
+
+              <img src={film.image} alt="movie" />
+            </li>
+          );
         })}
       </ul>
     </div>
